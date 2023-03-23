@@ -22,7 +22,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      default:
+      bootcamp:
         aliases:
           - bootcamp-mysql
 
@@ -38,9 +38,9 @@ services:
       - ./logs:/usr/local/tomcat/logs
 
     environment:
-      spring_datasource_username: ${MYSQL_USER}
-      spring_datasource_password: ${MYSQL_PASSWORD}
-      spring_datasource_url: jdbc:mysql://bootcamp-mysql:3306/custom_service?createDatabaseIfNotExist=true&serverTimezone=UTC
-      MYSQL_DB: custom_service
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:mysql://bootcamp-mysql:3306/custom_service?createDatabaseIfNotExist=true&serverTimezone=UTC
 
-
+    networks:
+      bootcamp:
