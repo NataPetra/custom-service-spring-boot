@@ -15,8 +15,8 @@ services:
       - ./mysql/data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: custom_service
-      MYSQL_USER: nata
-      MYSQL_PASSWORD: root
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_ROOT_HOST: '%'
     ports:
@@ -24,7 +24,7 @@ services:
     networks:
       default:
         aliases:
-          - custom-mysql
+          - bootcamp-mysql
 
   bootcamp-app:
     container_name: rest
@@ -38,7 +38,9 @@ services:
       - ./logs:/usr/local/tomcat/logs
 
     environment:
-      MYSQL_USER: nata
-      MYSQL_PASSWORD: root
+      spring_datasource_username: ${MYSQL_USER}
+      spring_datasource_password: ${MYSQL_PASSWORD}
+      spring_datasource_url: jdbc:mysql://bootcamp-mysql:3306/custom_service?createDatabaseIfNotExist=true&serverTimezone=UTC
       MYSQL_DB: custom_service
+
 
