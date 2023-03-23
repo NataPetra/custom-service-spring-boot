@@ -5,9 +5,17 @@ networks:
     name: bootcamp
 
 volumes:
-  bootcamp:
+  bootcamp-volume:
 
 services:
+
+  maven-build:
+    image: maven:3.8.1-adoptopenjdk-11
+    volumes:
+      - .:/usr/src/build
+      - bootcamp-volume:/root/.m2
+    working_dir: /usr/src/build
+    command: mvn clean install
 
   db-mysql:
     image: mysql:5.7

@@ -18,7 +18,15 @@ To run database:
 docker compose up -d db-mysql
 ```
 
+To run mvn:
+
+```text
+docker compose up -d maven-build
+```
+
 To run web app:
 ```text
 docker compose up -d bootcamp-app
 ```
+
+Go to [http://localhost:8080/app_users](http://localhost:8080/app_users)
