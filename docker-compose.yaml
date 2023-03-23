@@ -15,7 +15,7 @@ services:
       - ./mysql/data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: custom_service
-      MYSQL_USER: root
+      MYSQL_USER: nata
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_ROOT_HOST: '%'
@@ -38,6 +38,7 @@ services:
       - ./logs:/usr/local/tomcat/logs
 
     environment:
-      MYSQL_USER: root
+      MYSQL_USER: nata
       MYSQL_PASSWORD: root
+      MYSQL_DB: custom_service
 
