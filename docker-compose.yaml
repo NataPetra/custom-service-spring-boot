@@ -1,0 +1,43 @@
+version: '3.5'
+
+networks:
+  bootcamp:
+    name: bootcamp
+
+volumes:
+  bootcamp:
+
+services:
+
+  db-mysql:
+    image: mysql:5.7
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: custom_service
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    networks:
+      default:
+        aliases:
+          - custom-mysql
+
+  bootcamp-app:
+    container_name: rest
+    build:
+      context: rest
+      args:
+        version: ${VERSION}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/usr/local/tomcat/logs
+
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+

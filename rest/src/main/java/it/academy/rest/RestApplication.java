@@ -10,8 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EntityScan("it.academy.model")
 public class RestApplication {
 
+    public static final String SECUREPARSING = "liquibase.secureParsing";
+
     public static void main(String[] args) {
-        System.setProperty("liquibase.secureParsing", System.getProperty("liquibase.secureParsing", "false"));
+        System.setProperty(SECUREPARSING, System.getProperty(SECUREPARSING, "false"));
         SpringApplication.run(RestApplication.class, args);
     }
 
