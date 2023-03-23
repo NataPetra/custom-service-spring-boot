@@ -11,6 +11,7 @@
     <modules>
         <module>database</module>
         <module>service</module>
+<!--        <module>rest</module>-->
     </modules>
 
     <properties>
@@ -23,12 +24,20 @@
         <jakarta.validation.version>2.0.2</jakarta.validation.version>
         <hibernate.version>5.6.12.Final</hibernate.version>
         <spring.data.version>2.7.5</spring.data.version>
+        <spring.boot.verion>2.7.5</spring.boot.verion>
         <spring.version>5.3.23</spring.version>
         <log4j.version>2.17.2</log4j.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.verion}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
