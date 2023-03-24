@@ -27,6 +27,8 @@
         <spring.boot.verion>2.7.5</spring.boot.verion>
         <spring.version>5.3.23</spring.version>
         <log4j.version>2.17.2</log4j.version>
+        <junit.version>4.13.2</junit.version>
+        <mockito.version>4.8.0</mockito.version>
     </properties>
 
     <dependencyManagement>
@@ -77,6 +79,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
