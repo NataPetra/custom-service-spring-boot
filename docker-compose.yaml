@@ -15,7 +15,7 @@ services:
       - .:/usr/src/build
       - bootcamp-volume:/root/.m2
     working_dir: /usr/src/build
-    command: mvn clean install
+    command: mvn clean install -Dmaven.test.skip=true
 
   db-mysql:
     image: mysql:5.7

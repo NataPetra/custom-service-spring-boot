@@ -5,7 +5,6 @@ import it.academy.converter.NewAppUserToAppUserConverter;
 import it.academy.repository.AppUserRepository;
 import it.academy.repository.AppUserRoleRepository;
 import it.academy.service.AppUserService;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +22,16 @@ public class ServiceConfigTest {
     private ApplicationContext applicationContext;
 
     @Test
-    public void givenBeanWhenSearchingInAppContextThenFindIt(){
+    public void givenBeanWhenSearchingInAppContextThenFindIt() {
         assertNotNull(applicationContext.getBean(AppUserService.class));
     }
+
     @Test
-    public void givenBeanDaoWhenSearchingInAppContextThenFindIt(){
+    public void givenBeanDaoWhenSearchingInAppContextThenFindIt() {
         assertNotNull(applicationContext.getBean(AppUserRepository.class));
         assertNotNull(applicationContext.getBean(AppUserRoleRepository.class));
     }
+
     @Test
     public void givenScannedScopeComponent_whenSearchingInApplicationContext_thenFindIt() {
         assertNotNull(applicationContext.getBean(AppUserToAppUserDTOConverter.class));
