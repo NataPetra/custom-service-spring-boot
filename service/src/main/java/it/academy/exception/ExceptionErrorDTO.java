@@ -16,6 +16,7 @@ public class ExceptionErrorDTO {
     public String getLogref() {
         return logref;
     }
+
     public String getMessage() {
         return message;
     }

@@ -23,6 +23,7 @@ public class ExceptionListDTO {
     public String getLogref() {
         return logref;
     }
+
     public List<ExceptionStructuredDTO> getErrors() {
         return errors;
     }

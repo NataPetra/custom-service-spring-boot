@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class AppUserService{
+public class AppUserService {
 
     @Autowired
     private ConversionService conversionService;
@@ -28,7 +28,7 @@ public class AppUserService{
     @Autowired
     private AppUserRepository appUserRepository;
 
-    public List<AppUserDTO> allUsers(){
+    public List<AppUserDTO> allUsers() {
         if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
             throw new RuntimeException("Can not convert AppUser to AppUserDTO");
         }
@@ -38,7 +38,7 @@ public class AppUserService{
                 .collect(Collectors.toList());
     }
 
-    public List<AppUserDTO> allUsersPagination(Integer pageNumber, Integer pageSize){
+    public List<AppUserDTO> allUsersPagination(Integer pageNumber, Integer pageSize) {
         if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
             throw new RuntimeException("Can not convert AppUser to AppUserDTO");
         }
@@ -49,13 +49,13 @@ public class AppUserService{
                 .collect(Collectors.toList());
     }
 
-    public NewAppUserDTO addNewUser(NewAppUserDTO newAppUserDTO){
+    public NewAppUserDTO addNewUser(NewAppUserDTO newAppUserDTO) {
         if (!conversionService.canConvert(NewAppUserDTO.class, AppUser.class)) {
             throw new RuntimeException("Can not convert NewAppUserDTO to AppUser");
         }
         AppUser appUser = conversionService.convert(newAppUserDTO, AppUser.class);
         AppUserRole userRole = appUserRoleRepository.findAppUserRoleByRoleName(newAppUserDTO.getRoleName());
-        if(userRole==null){
+        if (userRole == null) {
             userRole = appUserRoleRepository.save(new AppUserRole(null, newAppUserDTO.getRoleName()));
         }
         Objects.requireNonNull(appUser).setAppUserRole(userRole);
@@ -63,7 +63,7 @@ public class AppUserService{
         return newAppUserDTO;
     }
 
-    public AppUserDTO getUserByID(Long id){
+    public AppUserDTO getUserByID(Long id) {
         AppUser user = appUserRepository.findById(id).orElseThrow(() -> new AppUserNotFoundException(id));
         if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
             throw new RuntimeException("Can not convert AppUser to AppUserDTO");

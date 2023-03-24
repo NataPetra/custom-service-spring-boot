@@ -32,20 +32,23 @@ public class ExceptionGlobal extends Throwable {
         errorResponse.put("errors", errors);
         return errorResponse;
     }
+
     //    400
     @ExceptionHandler(value = {NumberFormatException.class})
-    public ResponseEntity<List<ExceptionErrorDTO>>  ArgumentUserNotValidException(
+    public ResponseEntity<List<ExceptionErrorDTO>> ArgumentUserNotValidException(
             ValidationUserException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(List.of(new ExceptionErrorDTO(e.getMessage())));
     }
+
     //    409
-    @ExceptionHandler(value = {UserAlreadyExistException.class })
+    @ExceptionHandler(value = {UserAlreadyExistException.class})
     public ResponseEntity<List<ExceptionErrorDTO>> ArgumentUserAlreadyExistException(
             RuntimeException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(List.of(new ExceptionErrorDTO(e.getMessage())));
     }
+
     //    500
     @ExceptionHandler()
     public ResponseEntity<List<ExceptionErrorDTO>> onHttpMessageNotReadableException(
@@ -53,15 +56,17 @@ public class ExceptionGlobal extends Throwable {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(List.of(new ExceptionErrorDTO(e.getMessage())));
     }
+
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class,
             MethodArgumentConversionNotSupportedException.class})
     public ResponseEntity<List<ExceptionErrorDTO>> onArgumentTypeMismatchException(
-            HttpMessageNotReadableException e ) {
+            HttpMessageNotReadableException e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(List.of(new ExceptionErrorDTO(e.getMessage())));
     }
+
     @ExceptionHandler
-    public ResponseEntity<List<ExceptionErrorDTO>> handler(Throwable e){
+    public ResponseEntity<List<ExceptionErrorDTO>> handler(Throwable e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(List.of(new ExceptionErrorDTO(e.getMessage())));
     }

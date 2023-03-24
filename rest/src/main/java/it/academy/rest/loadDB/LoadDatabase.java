@@ -14,10 +14,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LoadDatabase {
 
-    @Autowired
-    private AppUserRoleRepository appUserRoleRepository;
-
+    private final AppUserRoleRepository appUserRoleRepository;
     private static final Logger logger = LogManager.getLogger();
+
+    public LoadDatabase(AppUserRoleRepository appUserRoleRepository) {
+        this.appUserRoleRepository = appUserRoleRepository;
+    }
 
     @Bean
     CommandLineRunner initDatabase(AppUserRepository repository) {

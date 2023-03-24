@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,7 +29,7 @@ public class AppUserController {
 
     @GetMapping("")
     public List<AppUserDTO> all(
-            @RequestParam(name = "page", defaultValue = "0")  Integer page,
+            @RequestParam(name = "page", defaultValue = "0") Integer page,
             @RequestParam(name = "size", defaultValue = "10") Integer size) {
         return appUserService.allUsersPagination(page, size);
     }
@@ -40,7 +39,7 @@ public class AppUserController {
     public ResponseEntity<NewAppUserDTO> newUser(@Valid @RequestBody NewAppUserDTO newUser, Errors errors) {
         logger.info("Validation Errors: " + errors.hasErrors());
         logger.info("Errors count: " + errors.getErrorCount());
-        if (errors.hasErrors()){
+        if (errors.hasErrors()) {
             throw new ExceptionGlobal();
         }
         return new ResponseEntity<>(appUserService.addNewUser(newUser), HttpStatus.CREATED);

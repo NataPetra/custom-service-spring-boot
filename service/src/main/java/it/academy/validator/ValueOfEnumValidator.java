@@ -16,6 +16,7 @@ public class ValueOfEnumValidator implements ConstraintValidator<ValueOfRoleEnum
                 .map(Enum::name)
                 .collect(Collectors.toList());
     }
+
     @Override
     public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
         if (value == null) {

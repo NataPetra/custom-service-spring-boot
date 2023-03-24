@@ -41,4 +41,15 @@ public class NewAppUserDTO implements Serializable {
     @ValueOfRoleEnum(enumClass = Role.class) //version 1
     //@Pattern(regexp = "\\b(Administrator|Sale User|Customer User|Secure API User)\\b", message = "Invalid Role") version 2
     private String roleName;
+
+    @Override
+    public String toString() {
+        return "NewAppUserDTO{" +
+                "lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
 }
