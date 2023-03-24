@@ -6,6 +6,12 @@ To pull all docker images:
 docker compose pull
 ```
 
+To run mvn:
+
+```text
+docker compose up -d maven-build
+```
+
 To build local docker image:
 
 ```text
@@ -16,12 +22,6 @@ To run database:
 
 ```text
 docker compose up -d db-mysql
-```
-
-To run mvn:
-
-```text
-docker compose up -d maven-build
 ```
 
 To run web app:
