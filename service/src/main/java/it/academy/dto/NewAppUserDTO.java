@@ -1,5 +1,7 @@
 package it.academy.dto;
 
+import it.academy.enam.Role;
+import it.academy.validator.ValueOfRoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +37,8 @@ public class NewAppUserDTO implements Serializable {
     @Size(max = 50, message = "Invalid size: Must be of 50 characters")
     private String email;
 
-    @NotEmpty
-    @Pattern(regexp = "\\b(Administrator|Sale User|Customer User|Secure API User)\\b", message = "Invalid Role")
+    @NotEmpty(message = "Invalid Role: Empty role")
+    @ValueOfRoleEnum(enumClass = Role.class) //version 1
+    //@Pattern(regexp = "\\b(Administrator|Sale User|Customer User|Secure API User)\\b", message = "Invalid Role") version 2
     private String roleName;
 }

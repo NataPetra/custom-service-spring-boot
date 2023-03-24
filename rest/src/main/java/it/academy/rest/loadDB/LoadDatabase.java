@@ -22,8 +22,8 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(AppUserRepository repository) {
 
-        AppUserRole appUserRole = appUserRoleRepository.save(new AppUserRole(1L, "Administrator"));
-        AppUserRole appUserRole2 = appUserRoleRepository.save(new AppUserRole(2L, "Sale User"));
+        AppUserRole appUserRole = appUserRoleRepository.save(new AppUserRole(1L, "ADMINISTRATOR"));
+        AppUserRole appUserRole2 = appUserRoleRepository.save(new AppUserRole(2L, "SALE_USER"));
 
         return args -> {
             logger.info("Preloading " + repository.save(new AppUser(1L, "Ivanov", "Ivan", "Ivanovich", "ivanov@mail.ru", appUserRole)));
