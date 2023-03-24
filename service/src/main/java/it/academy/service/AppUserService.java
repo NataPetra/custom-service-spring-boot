@@ -9,13 +9,10 @@ import it.academy.repository.AppUserRepository;
 import it.academy.repository.AppUserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -32,28 +29,22 @@ public class AppUserService{
     private AppUserRepository appUserRepository;
 
     public List<AppUserDTO> allUsers(){
-        List<AppUserDTO> appUsers = new ArrayList<>();
-        List<AppUser> users = appUserRepository.allUsersOrderByEmail();
-        for (AppUser user: users) {
-            if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
-                throw new RuntimeException("Can not convert AppUser to AppUserDTO");
-            }
-            appUsers.add(conversionService.convert(user, AppUserDTO.class));
+        if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
+            throw new RuntimeException("Can not convert AppUser to AppUserDTO");
         }
-        return appUsers;
+        return appUserRepository.allUsersOrderByEmail()
+                .stream()
+                .map(appUser -> conversionService.convert(appUser, AppUserDTO.class))
+                .collect(Collectors.toList());
     }
 
     public List<AppUserDTO> allUsersPagination(Integer pageNumber, Integer pageSize){
-        List<AppUserDTO> appUsers = new ArrayList<>();
-        Pageable paging = PageRequest.of(pageNumber, pageSize);
-        Page<AppUser> users = appUserRepository.findAll(paging);
-        for (AppUser user: users) {
-            if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
-                throw new RuntimeException("Can not convert AppUser to AppUserDTO");
-            }
-            appUsers.add(conversionService.convert(user, AppUserDTO.class));
+        if (!conversionService.canConvert(AppUser.class, AppUserDTO.class)) {
+            throw new RuntimeException("Can not convert AppUser to AppUserDTO");
         }
-        return appUsers.stream()
+        return appUserRepository.findAll(PageRequest.of(pageNumber, pageSize))
+                .stream()
+                .map(appUser -> conversionService.convert(appUser, AppUserDTO.class))
                 .sorted(new AppUserDTOComparator())
                 .collect(Collectors.toList());
     }
