@@ -44,7 +44,7 @@ public class RootConfig {
     public DataSource dataSource(
             @Value("${url}") String url,
             @Value("${driver}") String driverClassName,
-            @Value("root") String userName,
+            @Value("${usernamebd}") String userName,
             @Value("${password}") String password
     ) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -74,8 +74,8 @@ public class RootConfig {
 
         properties.put(Environment.SHOW_SQL, "true");
         properties.put(Environment.FORMAT_SQL, "true");
-        properties.put(Environment.DEFAULT_SCHEMA, "car_rent_DB");
-        properties.put(Environment.HBM2DDL_AUTO, "update");
+        properties.put(Environment.DEFAULT_SCHEMA, "custom_service");
+        properties.put(Environment.HBM2DDL_AUTO, "none");
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
         properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 

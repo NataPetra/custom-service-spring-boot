@@ -44,9 +44,9 @@ services:
 #      - ./logs:/usr/local/tomcat/logs
 
     environment:
-      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
-      SPRING_DATASOURCE_URL: jdbc:mysql://bootcamp-mysql:3306/custom_service?createDatabaseIfNotExist=true&serverTimezone=UTC
+      USERNAMEBD: ${MYSQL_USER}
+      PASSWORD: ${MYSQL_PASSWORD}
+      URL: jdbc:mysql://bootcamp-mysql:3306/custom_service?createDatabaseIfNotExist=true&serverTimezone=UTC
 
     networks:
       bootcamp:

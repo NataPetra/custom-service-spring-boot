@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Getter
@@ -16,24 +17,25 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class NewAppUserDTO implements Serializable {
 
-    @Pattern(regexp = "^[a-zA-Z]{1,40}$", message = "Error lastName")
-    @NotEmpty
+    @Pattern(regexp = "^[a-zA-Z]{1,40}$", message = "Invalid Last Name: 40 characters, latin letters only")
+    @NotEmpty(message = "Invalid Last Name: Empty last name")
     private String lastName;
 
-    @Pattern(regexp = "^[a-zA-Z]{1,20}$", message = "Error firstName")
-    @NotEmpty
+    @Pattern(regexp = "^[a-zA-Z]{1,20}$", message = "Invalid First Name: 20 characters, latin letters only")
+    @NotEmpty(message = "Invalid First Name: Empty first name")
     private String firstName;
 
-    @Pattern(regexp = "^[a-zA-Z]{1,40}$", message = "Error surname")
-    @NotEmpty
+    @Pattern(regexp = "^[a-zA-Z]{1,40}$", message = "Invalid Surname: 40 characters, latin letters only")
+    @NotEmpty(message = "Invalid Surname: Empty surname")
     private String surname;
 
-    @Email(message = "Error email")
+    @Email(message = "Invalid Email")
     @Pattern(regexp = "^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$")
-    @NotEmpty
+    @NotEmpty(message = "Invalid Email: Empty email")
+    @Size(max = 50, message = "Invalid size: Must be of 50 characters")
     private String email;
 
     @NotEmpty
-    @Pattern(regexp = "\\b(Administrator|Sale User|Customer User|Secure API User)\\b", message = "Error role")
+    @Pattern(regexp = "\\b(Administrator|Sale User|Customer User|Secure API User)\\b", message = "Invalid Role")
     private String roleName;
 }

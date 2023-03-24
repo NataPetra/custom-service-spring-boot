@@ -15,6 +15,13 @@ import java.io.Serializable;
 @Table(name = "app_user")
 public class AppUser implements Serializable {
 
+    public AppUser(String lastName, String firstName, String surname, String email) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.email = email;
+    }
+
     @Id
     @Column(name = "app_user_id")
     @GeneratedValue(generator = "increment")
