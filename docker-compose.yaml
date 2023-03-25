@@ -40,8 +40,6 @@ services:
       context: rest
     ports:
       - "8080:8081"
-#    volumes:
-#      - ./logs:/usr/local/tomcat/logs
 
     environment:
       USERNAMEBD: ${MYSQL_USER}

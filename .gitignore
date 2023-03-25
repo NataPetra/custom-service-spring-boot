@@ -30,6 +30,7 @@ build/
 !**/src/test/**/build/
 /mysql/
 /logs/
+/log-folder/
 
 ### VS Code ###
 .vscode/
