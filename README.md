@@ -64,7 +64,6 @@ Go to [http://localhost:8080/app_users](http://localhost:8080/app_users)
 To get all users with a specific page and number of users (example of the first page with the output of two users):
 
 Go to [http://localhost:8080/app_users/?page=0&size=2](http://localhost:8080/app_users/?page=0&size=2)
-example of the first page with the output of two users
 
 For adding a user on http://localhost:8080/app_users send JSON (example):
 ```text
