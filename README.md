@@ -76,5 +76,9 @@ For adding a user on http://localhost:8080/app_users send JSON (example):
    "roleName": "ADMINISTRATOR"
 }
 ```
-If something is not clear, write to the creator of the application
+Like a bonus get one user (for example fist user):
+
+Go to [http://localhost:8080/app_users/1](http://localhost:8080/app_users/1)
+
+If something is not clear, write to the creator of the application, will be grateful for feedback.
 
